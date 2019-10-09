@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BoardUtils {
     public static Board createBoard(String msg) {
@@ -66,5 +67,23 @@ public class BoardUtils {
         newBoard[oldBlank] = newBoard[newBlank];
         newBoard[newBlank] = temp;
         return new Board(newBoard, parent, move);
+    }
+
+    public static boolean boardEquals(Board board1, Board goalBoard){
+        if(board1 != null){
+            return board1.toString().equals(goalBoard.toString());
+        }
+        return false;
+    }
+
+    public static void boardPrintToRoot(Board board, Stack<Character> moves){
+        if(board.getLastMove() != 'n') {
+            moves.push(board.getLastMove());
+            boardPrintToRoot(board.getParent(), moves);
+        }else{
+            while(!moves.empty()){
+                System.out.print(moves.pop());
+            }
+        }
     }
 }
