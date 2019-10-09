@@ -8,7 +8,7 @@ public class BoardUtils {
         while (!correct) {
             System.out.println(msg);
             Scanner scan = new Scanner(System.in);
-            String userInput = scan.nextLine().toLowerCase().strip();
+            String userInput = scan.nextLine().toLowerCase().trim();
 
             if (inputValidator(userInput)) {
                 for(int i = 0; i < 9; i++){
