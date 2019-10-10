@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Board {
     private int depth;
     private Board parent;
@@ -64,6 +66,16 @@ public class Board {
             }
         }
         return -1;
+    }
+
+    public boolean boardEquals(Board compare) {
+        for(int i = 0; i < 9; i++){
+            if(board[i].getTileNum() != compare.board[i].getTileNum()) {
+                return false;
+            }
+        }
+        return true;
+         //return Arrays.equals(board, compare.getBoard());
     }
 
     /**

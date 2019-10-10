@@ -25,4 +25,8 @@ public class Tile {
     public String toString() {
         return "" + tileNum;
     }
+
+    public boolean equals(Tile compare) {
+            return tileNum == compare.tileNum;
+    }
 }
