@@ -5,5 +5,10 @@ public class Main {
         DepthFirstSearching.depthFirst(rootBoard,goalStateBoard,true);
 		System.out.println();
 		DepthFirstSearching.depthFirst(rootBoard,goalStateBoard,false);
+		System.out.println();
+		BreadthFirstSeatching.breadthFirst(rootBoard,goalStateBoard,true);
+		System.out.println();
+		BreadthFirstSeatching.breadthFirst(rootBoard,goalStateBoard,false);
+
 	}
 }

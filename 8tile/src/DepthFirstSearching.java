@@ -47,7 +47,7 @@ class DepthFirstSearching {
                 i++;
             }
             boardStack.push(newBoard);
-            if(!allowRepeats) {
+            if (!allowRepeats) {
                 createdBoards.add(newBoard);
             }
         }
@@ -59,10 +59,10 @@ class DepthFirstSearching {
      * @param startBoard takes in the board you want sorted
      * @param goalState  takes in the board you want to sort to
      */
-    static void depthFirst(Board startBoard, Board goalState,boolean allowRepeats) {
+    static void depthFirst(Board startBoard, Board goalState, boolean allowRepeats) {
         Stack<Board> boardStack = new Stack<>();
         boardStack.push(startBoard);
-        Board sol = searchDepthFirstTree(boardStack, goalState,allowRepeats);
+        Board sol = searchDepthFirstTree(boardStack, goalState, allowRepeats);
         if (sol != null) {
             Stack<Character> moves = new Stack<>();
             System.out.println(sol.toString());
