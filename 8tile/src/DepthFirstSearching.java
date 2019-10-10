@@ -15,6 +15,7 @@ class DepthFirstSearching {
         createdBoards.add(boardStack.peek());
         while (!boardStack.empty()) {
             Board tempBoard = boardStack.pop();
+            //print out temp board for verbose
             if (BoardUtils.boardEquals(tempBoard, goalStateBoard)) {
                 return tempBoard;
             }
@@ -59,13 +60,13 @@ class DepthFirstSearching {
      * @param startBoard takes in the board you want sorted
      * @param goalState  takes in the board you want to sort to
      */
-    static void depthFirst(Board startBoard, Board goalState, boolean allowRepeats) {
+    static void depthFirst(Board startBoard, Board goalState, boolean allowRepeats,boolean verbose) {
         Stack<Board> boardStack = new Stack<>();
         boardStack.push(startBoard);
         Board sol = searchDepthFirstTree(boardStack, goalState, allowRepeats);
         if (sol != null) {
             Stack<Character> moves = new Stack<>();
-            System.out.println(sol.toString());
+            //System.out.println(sol.toString());
             BoardUtils.boardPrintToRoot(sol, moves);
         }
     }

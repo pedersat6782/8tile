@@ -3,8 +3,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BreadthFirstSeatching {
-	public static Board searchDepthFirstTree(Queue<Board> boardQueue, Board goalStateBoard, boolean allowRepeats) {
+public class BreadthFirstSearching {
+	public static Board searchBreathFirstTree(Queue<Board> boardQueue, Board goalStateBoard, boolean allowRepeats) {
 		ArrayList<Board> createdBoards = new ArrayList<>();
 		createdBoards.add(boardQueue.peek());
 		while (!boardQueue.isEmpty()) {
@@ -13,17 +13,17 @@ public class BreadthFirstSeatching {
 				return tempBoard;
 			}
 			if (tempBoard.getDepth() < 10) {
-				pushKids(createdBoards, boardQueue, tempBoard, 'L', allowRepeats);
-				pushKids(createdBoards, boardQueue, tempBoard, 'D', allowRepeats);
-				pushKids(createdBoards, boardQueue, tempBoard, 'R', allowRepeats);
-				pushKids(createdBoards, boardQueue, tempBoard, 'U', allowRepeats);
+				addKids(createdBoards, boardQueue, tempBoard, 'L', allowRepeats);
+				addKids(createdBoards, boardQueue, tempBoard, 'D', allowRepeats);
+				addKids(createdBoards, boardQueue, tempBoard, 'R', allowRepeats);
+				addKids(createdBoards, boardQueue, tempBoard, 'U', allowRepeats);
 			}
 		}
 		System.out.println("No Solution Found");
 		return null;
 	}
 
-	private static void pushKids(ArrayList<Board> createdBoards, Queue<Board> boardQueue, Board parent, char move, boolean allowRepeats) {
+	private static void addKids(ArrayList<Board> createdBoards, Queue<Board> boardQueue, Board parent, char move, boolean allowRepeats) {
 		Board newBoard = BoardUtils.createChild(parent, move);
 		if (newBoard != null) {
 			int i = 0;
@@ -40,13 +40,13 @@ public class BreadthFirstSeatching {
 		}
 	}
 
-	static void breadthFirst(Board startBoard, Board goalState, boolean allowRepeats) {
+	static void breadthFirst(Board startBoard, Board goalState, boolean allowRepeats,boolean verbose) {
 		Queue<Board> boardQueue = new LinkedList<>();
 		boardQueue.add(startBoard);
-		Board sol = searchDepthFirstTree(boardQueue, goalState, allowRepeats);
+		Board sol = searchBreathFirstTree(boardQueue, goalState, allowRepeats);
 		if (sol != null) {
 			Stack<Character> moves = new Stack<>();
-			System.out.println(sol.toString());
+			//System.out.println(sol.toString());
 			BoardUtils.boardPrintToRoot(sol, moves);
 		}
 	}
