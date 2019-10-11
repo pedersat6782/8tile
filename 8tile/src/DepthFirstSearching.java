@@ -10,12 +10,15 @@ class DepthFirstSearching {
      * @param goalStateBoard This is the goal board for the initial board to end up at
      * @return This returns either the board state if the solution is found or null if it is not
      */
-    private static Board searchDepthFirstTree(Stack<Board> boardStack, Board goalStateBoard, boolean allowRepeats) {
+    private static Board searchDepthFirstTree(Stack<Board> boardStack, Board goalStateBoard, boolean allowRepeats, boolean verbose) {
         ArrayList<Board> createdBoards = new ArrayList<>();
         createdBoards.add(boardStack.peek());
         while (!boardStack.empty()) {
             Board tempBoard = boardStack.pop();
-            //print out temp board for verbose
+
+            if(verbose) {
+                System.out.println(tempBoard.toString());
+            }
             if (BoardUtils.boardEquals(tempBoard, goalStateBoard)) {
                 return tempBoard;
             }
@@ -60,13 +63,13 @@ class DepthFirstSearching {
      * @param startBoard takes in the board you want sorted
      * @param goalState  takes in the board you want to sort to
      */
-    static void depthFirst(Board startBoard, Board goalState, boolean allowRepeats,boolean verbose) {
+    static void depthFirst(Board startBoard, Board goalState, boolean allowRepeats, boolean verbose) {
+        System.out.println("DLS " + (allowRepeats ? "repeats: " : "no repeats: "));
         Stack<Board> boardStack = new Stack<>();
         boardStack.push(startBoard);
-        Board sol = searchDepthFirstTree(boardStack, goalState, allowRepeats);
+        Board sol = searchDepthFirstTree(boardStack, goalState, allowRepeats,verbose);
         if (sol != null) {
             Stack<Character> moves = new Stack<>();
-            //System.out.println(sol.toString());
             BoardUtils.boardPrintToRoot(sol, moves);
         }
     }

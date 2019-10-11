@@ -96,7 +96,7 @@ public class Board implements Comparable<Board> {
      * @return a string of three lines that represents the tiles of the board
      */
     public String toString() {
-        return board[0] + ", " + board[1] + ", " + board[2] + "\n" + board[3] + ", " + board[4] + ", " + board[5] + "\n" + board[6] + ", " + board[7] + ", " + board[8];
+        return board[0] + ", " + board[1] + ", " + board[2] + "\n" + board[3] + ", " + board[4] + ", " + board[5] + "\n" + board[6] + ", " + board[7] + ", " + board[8]+"\n";
     }
 
     int heuristic() {
@@ -109,18 +109,17 @@ public class Board implements Comparable<Board> {
         return correctTiles + depth;
     }
 
-    boolean solvable() {
+    int inversion() {
         int inversion = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = i+1; j < 9; j++) {
                 if (board[j].getTileNum() != 'b' && board[i].getTileNum() != 'b' && board[j].getTileNum() < board[i].getTileNum()) {
                     inversion++;
-
                 }
             }
         }
-        System.out.println("Inversion: "+inversion);
-        return inversion%2==0;
+        //System.out.println("Inversion: "+inversion);
+        return inversion;
     }
 
     @Override

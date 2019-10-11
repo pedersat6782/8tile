@@ -4,11 +4,14 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class BreadthFirstSearching {
-	public static Board searchBreathFirstTree(Queue<Board> boardQueue, Board goalStateBoard, boolean allowRepeats) {
+	public static Board searchBreathFirstTree(Queue<Board> boardQueue, Board goalStateBoard, boolean allowRepeats,boolean verbose) {
 		ArrayList<Board> createdBoards = new ArrayList<>();
 		createdBoards.add(boardQueue.peek());
 		while (!boardQueue.isEmpty()) {
 			Board tempBoard = boardQueue.remove();
+			if(verbose) {
+				System.out.println(tempBoard.toString());
+			}
 			if (BoardUtils.boardEquals(tempBoard, goalStateBoard)) {
 				return tempBoard;
 			}
@@ -41,12 +44,12 @@ public class BreadthFirstSearching {
 	}
 
 	static void breadthFirst(Board startBoard, Board goalState, boolean allowRepeats,boolean verbose) {
+		System.out.println("BFS " + (allowRepeats ? "repeats: " : "no repeats: "));
 		Queue<Board> boardQueue = new LinkedList<>();
 		boardQueue.add(startBoard);
-		Board sol = searchBreathFirstTree(boardQueue, goalState, allowRepeats);
+		Board sol = searchBreathFirstTree(boardQueue, goalState, allowRepeats,verbose);
 		if (sol != null) {
 			Stack<Character> moves = new Stack<>();
-			//System.out.println(sol.toString());
 			BoardUtils.boardPrintToRoot(sol, moves);
 		}
 	}

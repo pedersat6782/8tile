@@ -85,5 +85,6 @@ public class BoardUtils {
                 System.out.print(moves.pop());
             }
         }
+//        System.out.println("\n");
     }
 }
